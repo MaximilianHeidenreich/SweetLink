@@ -1,0 +1,13 @@
+{
+	"imports": {
+		"@src/": "./src/",
+		"@lib/": "./src/lib/",
+		"$std/": "https://deno.land/std@0.167.0/",
+        "zod/": "https://deno.land/x/zod@v3.20.2/",
+        "zod": "https://deno.land/x/zod@v3.20.2/mod.ts",
+		"drash/": "https://deno.land/x/drash@v2.7.1/",
+		"deta": "https://esm.sh/deta@1.1.0",
+        "nanoid/": "https://deno.land/x/nanoid@v3.0.0/",
+        "bcrypt": "https://deno.land/x/bcrypt@v0.4.1/mod.ts"
+	}
+}
