@@ -15,7 +15,9 @@ export interface ILink {
     title?: string;
     target: string;
     shortCode: string;
+    tags: string[];
 
+    protected: boolean;
     passwordHash?: string;
     visitorLimit?: number;
     collectStatistics: boolean;

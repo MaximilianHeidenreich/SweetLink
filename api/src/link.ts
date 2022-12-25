@@ -87,6 +87,8 @@ export class LinkResource extends Drash.Resource {
             target,
             title: title ? title : "",
             shortCode,
+            tags: [],
+            protected: passwordHash ? true : false,
             passwordHash,
             visitorLimit,
             collectStatistics,
@@ -109,6 +111,47 @@ export class LinkResource extends Drash.Resource {
             data: link
 		} as IOk, 200);
 	}
+
+    public async PATCH(
+        request: Drash.Request,
+        response: Drash.Response,
+    ): Promise<void> {
+        // Get one
+        const id = request.pathParam("id") as string;
+        if (!(await db.get(id))) {
+            return response.json({ ok: false, error: "Link with id not found!" } as IError, 404);
+        }
+
+        const updates = request.bodyParam<unknown>("updates");
+
+        // @ts-ignore - TODO(@max): fix
+        if (updates.protected === false) {
+            // @ts-ignore - TODO(@max): fix
+            updates.protected = false;
+        }
+        // @ts-ignore - TODO(@max): fix
+        else if (updates.passwordRaw) {
+             // @ts-ignore - TODO(@max): fix
+            updates.passwordHash = await bcrypt.hash(updates.passwordRaw); // TODO(@max): check if we can reduce the cost
+        }
+
+        // Delete key property -> Deta will error on key update
+        // @ts-ignore - fix
+        delete updates.key; // TODO(@max): what if not exist
+        
+        try {
+            console.log(updates);
+            
+            // @ts-ignore - Deta SDK is shitting itself but we good :)
+            await db.update(updates, id);
+        }
+        catch (err) {
+            console.error(err);
+            return response.json({ ok: false, error: "Could not update link!" } as IError, 500);
+        }
+
+        return response.json({ ok: true } as IOk, 200);
+    }
 
     public async DELETE(
         request: Drash.Request,

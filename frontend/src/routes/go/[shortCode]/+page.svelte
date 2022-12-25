@@ -45,14 +45,14 @@
     onMount(async () => {
         await countVisit(link.id);
         
-        if (!link.passwordHash && ((link.visitorLimit && link.visitors < link.visitorLimit) || !link.visitorLimit)) document.location = link.target;//await goto(link.target, { replaceState: true });
+        if (!link.protected && ((link.visitorLimit && link.visitors < link.visitorLimit) || !link.visitorLimit)) document.location = link.target;//await goto(link.target, { replaceState: true });
     });
     
 </script>
 
 <AppTitle />
 
-{#if link.passwordHash}
+{#if link.protected}
 <section class="max-w-lg mx-auto">
     <Alert>
         <span slot="icon">
@@ -94,7 +94,7 @@
     </Alert>
 </section>
 {/if}
-{#if !link.passwordHash}
+{#if !link.protected}
     {#if (link.visitorLimit && link.visitors < link.visitorLimit) || !link.visitorLimit}
     <section class="max-w-lg mx-auto">
         <P class="text-center" size="lg" weight="semibold" height="loose">Redirecting...</P>

@@ -8,7 +8,8 @@ import { IVisit } from "./IVisit.ts";
  * @property timestamp - UNIX epoch timestamp the entry was created.
  * @property title - Custom title of the link target.
  * @property target - The target url.
- * @property shortId - The short code of the entry used to access the entry.
+ * @property shortCode - The short code of the entry used to access the entry.
+ * @property tags - Tags associated with the entry.
  */
 export interface ILink {
     id: string;
@@ -17,7 +18,9 @@ export interface ILink {
     title?: string;
     target: string;
     shortCode: string;
+    tags: string[];
 
+    protected: boolean;
     passwordHash?: string;
     visitorLimit?: number;
     collectStatistics: boolean;

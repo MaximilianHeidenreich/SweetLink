@@ -66,8 +66,9 @@
 <form class="mt-4 max-w-2xl mx-auto" on:submit|preventDefault={submitForm}>
     <!--<Label for="input-addon" class="mb-2">Destination</Label>-->
     <ButtonGroup class="w-full">
-        <InputAddon><LinkIcon color="black" size="14" /></InputAddon>
-        <Input id="targetUrl" type="url" placeholder="https://www.example.com/page" bind:value={targetURL} required/>
+        <InputAddon><LinkIcon size="14" /></InputAddon>
+        <Input id="targetUrl" type="url" placeholder="https://www.example.com/page" bind:value={targetURL} required>
+        </Input>
         <Button color="light" id="settings"><SettingsIcon size="16"/></Button>
         <Button color="purple" type="submit" disabled={submitting}>Create <ArrowRightIcon size="16" class="ml-1.5"/></Button>
     </ButtonGroup>

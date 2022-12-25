@@ -12,7 +12,7 @@ export async function load({ params }) {
     const link: ILink | undefined = await fetchLinkByShortCode(shortCode);
 
     if (link) {
-        if (!link.passwordHash && !link.collectStatistics) {
+        if (!link.protected && !link.collectStatistics) {
             if ((link.visitorLimit && link.visitors < link.visitorLimit) || !link.visitorLimit) {
                 throw redirect(302, link.target);
             }
@@ -23,7 +23,7 @@ export async function load({ params }) {
     }
 
     // Strip private data
-    if (link.passwordHash) {
+    if (link.protected) {
         link.target = "";
         link.passwordHash = "hackyHacky";   // We don't want to leak the password hash, but reuse the property to indicate a password is needed to the frontend.
     }
