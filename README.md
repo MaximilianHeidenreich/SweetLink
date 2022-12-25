@@ -29,6 +29,13 @@ SweetLink is a lightweight but powerful URL shortener. It runns on <a href="http
 Due to this, you have full access and control over your shortend url's and data.
 Additionally, SweetLink provides a greate user experience, a beautiful UI and powerful features like analytics.
 
+**About custom Domains:**
+
+Currently, Deta Space does not support adding custom domains.
+Due to this, SweetLink's short links won't really be short at all.
+A shortend link will always contain an instance id, and your deta username (e.g. `https://dev-hermit-sweetlink.maximilianheidenreich.deta.app/...`).
+Currently SweetLink is really just useful to use the `password protect` and `limited visitors` feature until custom domains can be added.
+
 ### Project Goals
 
 - [x] URL Shortener (redirect to long urls from small short code).
