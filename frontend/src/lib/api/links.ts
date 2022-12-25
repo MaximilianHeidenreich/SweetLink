@@ -132,3 +132,23 @@ export async function deleteLink(id: string) {
     //TODO;: Error handling
     return json.data;
 }
+
+export async function authorizeLink(id: string, passwordRaw: string): Promise<ILink | null> {
+    const response = await fetch(`${API_HOST}/auth/${id}`, {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify({ passwordRaw }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Accept": "application/json",
+        },
+    });    
+    
+    if (response.status === 401) return null;   // Wrong password
+    
+    const json = await response.json();
+    console.log("resp json", json);
+    
+    //TODO;: Error handling
+    return json.data;
+}

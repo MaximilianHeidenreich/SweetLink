@@ -58,6 +58,7 @@ export class LinkResource extends Drash.Resource {
             LinkCreateSchema.parse(request.bodyAll());
         }
         catch (err) {
+            console.error(err);
             return response.json({ ok: false, error: err } as IError, 400);
         }
 
@@ -84,7 +85,7 @@ export class LinkResource extends Drash.Resource {
             id: crypto.randomUUID(),
             timestamp: Date.now(),
             target,
-            title,
+            title: title ? title : "",
             shortCode,
             passwordHash,
             visitorLimit,
@@ -99,6 +100,7 @@ export class LinkResource extends Drash.Resource {
             await db.put(link, link.id);
         }
         catch (err) {
+            console.error(err);
             return response.json({ ok: false, error: err } as IError, 500);
         }
         
@@ -119,11 +121,10 @@ export class LinkResource extends Drash.Resource {
 
         try {
             // @ts-ignore - Deta SDK is shitting itself but its ok :)
-            console.log("del", id);
-            
             await db.delete(id);
         }
         catch (err) {
+            console.error(err);
             return response.json({ ok: false, error: err } as IError, 500);
         }
 

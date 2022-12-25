@@ -19,4 +19,7 @@ export interface ILink {
     passwordHash?: string;
     visitorLimit?: number;
     collectStatistics: boolean;
+
+    // Dynamics - updated on access
+    visitors: number;
 }

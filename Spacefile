@@ -1,13 +1,15 @@
 # Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
 v: 0
 app_name: "SweetLink"
+icon: "./assets/SweetLink - Logo@512w.png"
 micros:
   - name: api
     src: ./api
     path: g
     engine: custom
     public_routes:
-      - "/submit*"
+      - "/auth/*"
+      - "/telemetry/*"
     commands:
       #- apt-get update
       - apt-get -y install zip
@@ -24,3 +26,17 @@ micros:
           description: deno config dir
           default: "/tmp/deno_dir"
     run: ./deno run --allow-env --allow-read --allow-net bundle.ts
+  - name: frontend
+    primary: true
+    src: ./frontend
+    engine: nodejs16
+    public_routes:
+      - "/go/*"
+    commands:
+     - npm install
+     - npm run build
+    include:
+     - build
+    # - package.json
+    # - package-lock.json
+    run: node build

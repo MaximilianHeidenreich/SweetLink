@@ -13,9 +13,10 @@
     //const fields = Object.entries(submission.fields).map(([name, value]) => ({ name, value }));
 </script>
 
-<Breadcrumb aria-label="Solid background breadcrumb example" solid>
+Not implemented! Coming soon.
+<!--<Breadcrumb aria-label="Solid background breadcrumb example" solid>
     <BreadcrumbItem href="/" home>Home</BreadcrumbItem>
     <BreadcrumbItem>Links</BreadcrumbItem>
     <BreadcrumbItem>Google</BreadcrumbItem>
-</Breadcrumb>
+</Breadcrumb>-->
 

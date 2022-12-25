@@ -13,7 +13,9 @@ export async function load({ params }) {
 
     if (link) {
         if (!link.passwordHash && !link.collectStatistics) {
-            throw redirect(302, link.target);
+            if ((link.visitorLimit && link.visitors < link.visitorLimit) || !link.visitorLimit) {
+                throw redirect(302, link.target);
+            }
         }
     }
     else {
@@ -21,7 +23,13 @@ export async function load({ params }) {
     }
 
     // Strip private data
-    link.passwordHash = "hackyHacky";   // We don't want to leak the password hash, but reuse the property to indicate a password is needed to the frontend.
+    if (link.passwordHash) {
+        link.target = "";
+        link.passwordHash = "hackyHacky";   // We don't want to leak the password hash, but reuse the property to indicate a password is needed to the frontend.
+    }
+    if (link.visitorLimit && link.visitors >= link.visitorLimit) {
+        link.target = "";
+    }
 
     return {
         link

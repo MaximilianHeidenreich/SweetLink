@@ -3,7 +3,7 @@
 	import { fetchRemoteRecentLinks, orderLinks, recentLinksStore } from "$src/lib/stores/recentLinksStore";
 	import toastOptions from "$src/lib/toast";
 
-    import { Label, Button, ButtonGroup, Input, InputAddon, Popover, Toggle, Spinner, Hr } from "flowbite-svelte";
+    import { Label, Button, ButtonGroup, Input, InputAddon, Popover, Toggle, Spinner, Hr, Helper } from "flowbite-svelte";
     import { LinkIcon, ArrowRightIcon, SettingsIcon, KeyIcon, UsersIcon, HashIcon, TypeIcon } from "svelte-feathers";
 	import toast from "svelte-french-toast";
 
@@ -69,7 +69,7 @@
         <InputAddon><LinkIcon color="black" size="14" /></InputAddon>
         <Input id="targetUrl" type="url" placeholder="https://www.example.com/page" bind:value={targetURL} required/>
         <Button color="light" id="settings"><SettingsIcon size="16"/></Button>
-        <Button color="dark" type="submit" disabled={submitting}>Create <ArrowRightIcon size="16" class="ml-1.5"/></Button>
+        <Button color="purple" type="submit" disabled={submitting}>Create <ArrowRightIcon size="16" class="ml-1.5"/></Button>
     </ButtonGroup>
     <Popover 
         triggeredBy="#settings" 
@@ -98,7 +98,7 @@
                 </fieldset>
                 <div class="my-6"><Hr>Utilities</Hr></div>
                 <fieldset>
-                    <Toggle bind:checked={passwordProtected}>Password protected</Toggle>
+                    <Toggle bind:checked={passwordProtected} color="purple">Password protected</Toggle>
                     {#if passwordProtected}
                     <Label for="password" class="block my-2">Password</Label>
                     <Input id="password" type="text" bind:value={password}>
@@ -109,7 +109,7 @@
                     {/if}
                 </fieldset>
                 <fieldset>
-                    <Toggle bind:checked={limitUniqueVisitors}>Limit unique visitors</Toggle>
+                    <Toggle bind:checked={limitUniqueVisitors} color="purple">Limit unique visitors</Toggle>
                     {#if limitUniqueVisitors}
                     <Label for="limitUniqueVisitorsCount" class="block my-2">Max. visitors</Label>
                     <Input id="limitUniqueVisitorsCount" type="number" bind:value={limitUniqueVisitorsCount}>
@@ -120,10 +120,12 @@
                     {/if}
                 </fieldset>
                 <fieldset>
-                    <Toggle>Add tracking UTMs</Toggle>
+                    <Toggle color="purple">Add tracking UTMs</Toggle>
+                    <Helper helperClass="mt-1">Not implemented yet!</Helper>
                 </fieldset>
                 <fieldset>
-                    <Toggle bind:checked={collectStatistics}>Collect statistics</Toggle>
+                    <Toggle bind:checked={collectStatistics} color="purple">Collect statistics</Toggle>
+                    <Helper helperClass="mt-1">Not implemented yet!</Helper>
                 </fieldset>
             </form>
 

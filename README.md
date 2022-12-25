@@ -1,21 +1,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/MaximilianHeidenreich/DsDDB">
+  <a href="https://github.com/MaximilianHeidenreich/SweetLink">
     <img src="https://deno.land/logo.svg" alt="Deno Logo" width="80" height="80">
   </a>
 
-<h2 align="center">DsDDB</h2>
+<h2 align="center">SweetLink</h2>
 
 <p align="center">
-    A lightweight, developer friendly, key-value persistant storage solution for Deno projects</a>.
+    A lightweight but powerful URL shortener for your private cloud on <a href="http://deta.sh">Deta Space</a>.
     <br />
-    <a href="https://doc.deno.land/https/deno.land/x/dsddb/mod.ts"><strong>Explore the docs »</strong></a>
+    <a href=""><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/MaximilianHeidenreich/DsDDB/issues">Report Bug</a>
+    <a href="https://github.com/MaximilianHeidenreich/SweetLink/issues">Report Bug</a>
     ·
-    <a href="https://github.com/MaximilianHeidenreich/DsDDB/issues">Request Feature</a>
+    <a href="https://github.com/MaximilianHeidenreich/SweetLink/issues">Request Feature</a>
   </p>
 </p>
 
@@ -25,22 +25,19 @@
 
 ## About The Project
 
-I created this project because I needed a super simple key-value database which
-could store data between script restarts. This is the result of that attempt.
-
-Obviously it can't hold up with "real" databases but if you are just starting
-out developing a new project and you want a dead simple way to store data, this
-probably is the solution for you.
-
-If you want to use it, please check out the docs for the project.
+SweetLink is a lightweight but powerful URL shortener. It runns on <a href="http://deta.sh">Deta Space</a> inside your private cloud.
+Due to this, you have full access and control over your shortend url's and data.
+Additionally, SweetLink provides a greate user experience, a beautiful UI and powerful features like analytics.
 
 ### Project Goals
 
-- Store & Access key-value pairs (support for primitive & custom values)
-- Write stored data to disk
-- Load stored data from disk
-- Expose a dead simple API to developers
-- Don't include anything else other than Deno std
+- [x] URL Shortener (redirect to long urls from small short code).
+- [x] Easy UX & Pretty UI.
+- [x] Password protected links.
+- [x] Links with a limited max. number of unique visitors.
+- [ ] Analytics
+  - [x] Total visitor count.
+  - [ ] Tracy analytics integration (In the future).
 
 <br>
 
@@ -48,64 +45,41 @@ If you want to use it, please check out the docs for the project.
 
 ## Usage
 
-This is the most basic example to get DsDDB up and running within your project.
-For further information check out the
-[API Documentation](https://doc.deno.land/https/deno.land/x/dsddb/mod.ts).
+### Dashboard
 
-> ! Note: If you are using the load() and write() methods, you need to run your
-> Deno program with the "--allow-read --allow-write" flags.
+#### Create a short link
+1. Enter the long URL you want to shorten into the main input field.
+2. (Optional) Adjust the settings by clicking the `cog` icon.
+3. Shorten the URL by clicking the `submit` button.
+4. The short link will automatically be copied into your clipboard. From here on, you can share it.
 
-```TypeScript
-// 1. Import DsDDB
-import { DsDDB } from "https://deno.land/x/dsddb@v2.1.0/mod.ts";
+#### Settings
+##### Title
 
-// 2. Create new DsDDB instance
-const database = new DsDDB();
+The title is just a custom displayname you can set to identify your different short links more easily.
 
-// 3. Load from disk
-await database.load();
+##### Custom ShortCode
 
-// 4. Use database
-database.set("key1", "value 1"); // Always override value.
-database.set("myKey", "Hello World", false); // Never  override value.
+If you don't set a custom short code, one will be created for you. 
+You can use a custom shortcode to easily identify specific short links.
 
-console.log(database.get("myKey"));
+Example:
+If you would want a short link for SweetLink's GitHub page, you might set the title to something like `SweetLink - GitHub page`
 
-// 5. Write data to disk
-await database.write();
-```
+##### Password protected
 
-If you want to store custom data structures, there's a solution to that as well.
+You can enable password protection to require users to enter the password you specified before 
+they get redirected to the target of the short link (your original long url).
 
-```TypeScript
-// 1. Import DsDDB
-import { DsDDB } from "https://deno.land/x/dsddb@v2.1.0/mod.ts";
+##### Limit unique visitors
 
-// 2. Define your data structure.
-interface IDino {
-  name: string;
-  size: number;
-  birthday: Date;
-}
+When enabled, a short link can only be accessed a limited number of times. After that, visitors will see an info-box 
+telling them, that the limit has been reached.
 
-// 3. Define your data.
-let data1: IDino = {
-  name: "Deno",
-  size: 69,
-  birthday: new Date(),
-};
+##### Add tracking UTM's
+Not implemented
 
-// 4. Create new DsDDB instance
-const database = new DsDDB<IDino>();
+##### Collect statistics
 
-// 5. Load from disk
-await database.load();
-
-// 6. Use database
-database.set("deno", data1);
-
-console.log(database.get("deno"));
-
-// 7. Write data to disk
-await database.write();
-```
+When enabled, visitors of your short link will see a `SweetLink` page before they get redirected. 
+This page will collect the number of visitors as well as visitor metadata like user-agent, location etc. (in the future).

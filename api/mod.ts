@@ -4,27 +4,12 @@ import { DexterService } from "drash/src/services/dexter/dexter.ts";
 import { CORSService } from "drash/src/services/cors/cors.ts";
 
 // Resources
-//import { ProjectsResource } from "./src/projects.ts";
+import { AuthResource } from "@src/auth.ts";
+import { TelemetryResource } from "@src/telemetry.ts"; // TODO(@max): replace with Tracy
 import { LinkResource } from "@src/link.ts";
 
 const ENV = await config({ path: "./.env.local", export: true });
 const PORT = Number(Deno.env.get("PORT")) || 3055;
-
-class HomeResource extends Drash.Resource { // TODO(@max): remove this
-	public paths = ["/"];
-
-	public GET(request: Drash.Request, response: Drash.Response): void {
-		return response.json({
-			hello: "world",
-			time: new Date(),
-		});
-	}
-    public POST(request: Drash.Request, response: Drash.Response): void {
-		return response.json({
-			hello: "post"
-		});
-	}
-}
 
 const dexter = new DexterService({
 	url: true,
@@ -42,12 +27,13 @@ const server = new Drash.Server({
 	port: PORT,
 	protocol: "http",
 	services: [
-		cors,
+		//cors,
 		dexter,
 	],
 	resources: [
-		//HomeResource,
         LinkResource,
+        AuthResource,
+        TelemetryResource // TODO(@max): replace with Tracy
 	],
 });
 
