@@ -8,7 +8,7 @@ const db = deta.Base("links");
 
 export class AuthResource extends Drash.Resource {
     public paths = [
-        "/g/auth/:id?"
+        "/auth/:id?"
     ];
 
     public async POST(

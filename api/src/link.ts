@@ -13,7 +13,7 @@ const db = deta.Base("links");
 
 export class LinkResource extends Drash.Resource {
     public paths = [
-        "/g/links/:id?"
+        "/links/:id?"
     ];
 
     public async GET(

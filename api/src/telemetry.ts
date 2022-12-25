@@ -8,7 +8,7 @@ const db = deta.Base("links");
 
 export class TelemetryResource extends Drash.Resource {
     public paths = [
-        "/g/telemetry/:id?"
+        "/telemetry/:id?"
     ];
 
     public async POST(

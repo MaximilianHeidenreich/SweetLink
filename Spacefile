@@ -5,7 +5,7 @@ icon: "./assets/SweetLink - Logo@512w.png"
 micros:
   - name: api
     src: ./api
-    path: g
+    path: api
     engine: custom
     public_routes:
       - "/auth/*"
@@ -37,6 +37,6 @@ micros:
      - npm run build
     include:
      - build
-    # - package.json
-    # - package-lock.json
+     - package.json
+     - package-lock.json
     run: node build
