@@ -45,6 +45,8 @@ Currently SweetLink is really just useful to use the `password protect` and `lim
 - [ ] Analytics
   - [x] Total visitor count.
   - [ ] Tracy analytics integration (In the future).
+- [ ] API
+  - [ ] API-Keys (Allow other apps to create / manage short links).
 
 <br>
 
