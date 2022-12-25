@@ -3,6 +3,20 @@ v: 0
 app_name: "SweetLink"
 icon: "./assets/SweetLink - Logo@512w.png"
 micros:
+  - name: frontend
+    primary: true
+    src: ./frontend
+    engine: nodejs16
+    public_routes:
+      - "/go/*"
+    commands:
+     - npm install
+     - npm run build
+    include:
+     - build
+     - package.json
+     - package-lock.json
+    run: node build
   - name: api
     src: ./api
     path: api
@@ -26,17 +40,3 @@ micros:
           description: deno config dir
           default: "/tmp/deno_dir"
     run: ./deno run --allow-env --allow-read --allow-net bundle.ts
-  - name: frontend
-    primary: true
-    src: ./frontend
-    engine: nodejs16
-    public_routes:
-      - "/go/*"
-    commands:
-     - npm install
-     - npm run build
-    include:
-     - build
-     - package.json
-     - package-lock.json
-    run: node build
