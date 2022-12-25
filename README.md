@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/MaximilianHeidenreich/SweetLink">
-    <img src="https://deno.land/logo.svg" alt="Deno Logo" width="80" height="80">
+    <img src="https://cdn.githubraw.com/MaximilianHeidenreich/SweetLink/3f6b2cfeb1232f6975daade6cd9a7b277fee05ab/assets/SweetLink%20-%20Logo@2x.png" alt="Deno Logo" width="80" height="80">
   </a>
 
 <h2 align="center">SweetLink</h2>
