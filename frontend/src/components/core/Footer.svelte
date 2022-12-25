@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { Footer, FooterLinkGroup, FooterLink } from "flowbite-svelte";
+    import { Footer, FooterLinkGroup, FooterLink, P } from "flowbite-svelte";
     import { BookOpenIcon } from "svelte-feathers";
     import detaLogo from "$lib/assets/detalogo.svg";
 </script>
 
 <Footer class="fixed bottom-0 left-0 z-20 w-full !bg-transparent !shadow-none">
-    <span href="/">SweetLink</span>
+    <P size="sm">v1.0.0</P>
     <FooterLinkGroup ulClass="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
         <FooterLink href="/" ><span class="flex items-center gap-2"><BookOpenIcon size="14"/>Docs</span></FooterLink> <!-- TODO: Add docs-->
         <FooterLink href="https://alpha.deta.space/discovery/@maximilianheidenreich/sweetlink" target="_blank"><img src={detaLogo} alt="Deta Logo" class="w-6 h-6"></FooterLink>
