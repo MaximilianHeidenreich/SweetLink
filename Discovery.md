@@ -19,11 +19,14 @@ homepage: "https://github.com/MaximilianHeidenreich/SweetLink"
   - [ ] API-Keys *(Allow other apps to create/manager short links)*.
 
 ### ⚡️ Changelog:
+### *`v1.1.0`*
+- Adds ability to edit links after creation.
+- Adds ability to tag links (now you can assign tags to links in order to sort / filter them).
 ### *`v1.0.0`*
-- First release
-- Create & Delete short links
-- Custom titles
-- Custom short codes
-- Password protected links
-- Limited visitors links
-- Simple & Beautiful dashboar`
+- First release.
+- Create & Delete short links.
+- Custom titles.
+- Custom short codes.
+- Password protected links.
+- Limited visitors links.
+- Simple & Beautiful dashboard.
